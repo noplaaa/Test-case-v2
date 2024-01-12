@@ -8,7 +8,7 @@ const route = express.Router();
 // auth
 route.post('/auth', authController.login)
 
-// Middleware for JWT auth
+// middleware for JWT auth
 const isAuthenticated = (req, res, next) => {
     passport.authenticate('jwt', { session: false }, (err, user) => {
         if (err || !user) {
