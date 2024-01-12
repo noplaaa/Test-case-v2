@@ -1,6 +1,6 @@
 # Test Case
 
-<strong>1. Instal mongoDB<br>
+<strong>1. Instal mongoDB</strong><br>
 
 <strong>2. Instal the components</strong> <br>
 npm i <i>//copy and paste this to your terminal</i>
