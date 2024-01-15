@@ -61,12 +61,21 @@ const create = async (req, res) => {
         } = req.body
 
         // validating...
-        passRules(pass)
-        passConfirmRules.validator(pass, pass_confirm)
-        if (!(await cityRules.validator(cityId, res)).isValid) {
-          return
+        const validatedPass = passRules(req.body.pass, res)
+        if (validatedPass !== true) {
+            res.status(validatedPass.status).send(validatedPass.message);
+            return
         }
-    
+
+        const passConfirmValidation = passConfirmRules.validator(pass, pass_confirm);
+        if (!passConfirmValidation.isValid) {
+            res.status(403).send(passConfirmValidation.message);
+            return;
+        }
+
+        if (!(await cityRules.validator(cityId, res)).isValid) {
+            return
+        }
 
         // creating...
         await User.create({
@@ -92,20 +101,21 @@ const update = async (req, res) => {
 
     try {
         const validatedPass = passRules(req.body.pass, res)
-
         if (validatedPass !== true) {
+            res.status(validatedPass.status).send(validatedPass.message);
             return
         }
 
-        if (!passConfirmRules.validator(req.body.pass, req.body.pass_confirm)) {
-            return res.status(403).send(passConfirmRules.message)
+        const validationResult = passConfirmRules.validator(req.body.pass, req.body.pass_confirm);
+        if (!validationResult.isValid) {
+            res.status(validationResult.status).send(validationResult.message);
         }
 
         // updating...
         const updatedUser = await User.findByIdAndUpdate(id, req.body, {
             useFindAndModify: false,
             new: true,
-        });
+        })
 
         if (!updatedUser) {
             return res.status(404).send('User not found')
