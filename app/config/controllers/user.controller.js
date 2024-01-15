@@ -63,14 +63,14 @@ const create = async (req, res) => {
         // validating...
         const validatedPass = passRules(req.body.pass, res)
         if (validatedPass !== true) {
-            res.status(validatedPass.status).send(validatedPass.message);
+            res.status(validatedPass.status).send(validatedPass.message)
             return
         }
 
-        const passConfirmValidation = passConfirmRules.validator(pass, pass_confirm);
+        const passConfirmValidation = passConfirmRules.validator(pass, pass_confirm)
         if (!passConfirmValidation.isValid) {
-            res.status(403).send(passConfirmValidation.message);
-            return;
+            res.status(403).send(passConfirmValidation.message)
+            return
         }
 
         if (!(await cityRules.validator(cityId, res)).isValid) {
@@ -102,13 +102,13 @@ const update = async (req, res) => {
     try {
         const validatedPass = passRules(req.body.pass, res)
         if (validatedPass !== true) {
-            res.status(validatedPass.status).send(validatedPass.message);
+            res.status(validatedPass.status).send(validatedPass.message)
             return
         }
 
         const validationResult = passConfirmRules.validator(req.body.pass, req.body.pass_confirm);
         if (!validationResult.isValid) {
-            res.status(validationResult.status).send(validationResult.message);
+            res.status(validationResult.status).send(validationResult.message)
         }
 
         // updating...
