@@ -7,4 +7,4 @@ search for <i>"mongoDB download"</i> on browser, then download the <i>mongoDB Sh
 npm i <i>//copy and paste this to your terminal</i>
 
 <strong>3. Run the server</strong> <br>
-npm run testcase  <i>//copy and paste this to your terminal</i>
+npm run testcase  <i>//copy and paste this in terminal to run the code</i>
