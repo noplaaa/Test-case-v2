@@ -4,14 +4,14 @@ const passRules = function (value) {
   const Digit = /\d/.test(value)
 
   if (!(Uppercase && Lowercase && Digit)) {
-    throw {
+    return {
       status: 403,
       message: 'Password must include uppercase, lowercase, and numbers'
     }
   }
 
   if (value.length < 8) {
-    throw {
+    return {
       status: 403,
       message: 'Password must be at least 8 characters long'
     }
