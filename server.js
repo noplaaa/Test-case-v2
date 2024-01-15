@@ -1,27 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const models = require('./app/models/index');   
-const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 
 const corsOptions = {
   origin: '*',
+  credentials: true,
 };
 
 // register middleware
-app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use(express.json());
 
 // connection
-
-// FIXME:
-// const mongooseConfig = {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// }
-
 models.mongoose.connect(models.url)
     .then(() => {
         console.log('Connected to database')
