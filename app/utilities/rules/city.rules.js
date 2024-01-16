@@ -1,14 +1,15 @@
-const cityNames = require('../../seeders/city.seeder')
+// city.rules.js
+const { check } = require('express-validator')
+const citySeeder = require('../../seeders/city.seeder')
 
-const cityRules = {
-  validator: async function (cityId, res) {
-    if (!cityNames.includes(cityId)) {
-      res.status(403).send("This city isn't available yet")
-      return {  isValid: false, message: "This city isn't available yet", status: 403 }
-    } else {
-      return { isValid: true, status: 201 }
-    }
-  }
+const validateCity = (cityId) => {
+  return check('cityId')
+    .custom((value, { req, location, path }) => {
+      if (!availableCities.includes(value)) {
+        throw new Error("This city isn't available yet")
+      }
+      return true
+    })
 }
 
-module.exports = cityRules
+module.exports = validateCity

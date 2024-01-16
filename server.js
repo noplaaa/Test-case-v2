@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const models = require('./app/models/index');   
+const models = require('./app/src/models/index');
 const app = express();
 const port = 3000;
 
@@ -15,17 +15,18 @@ app.use(express.json());
 
 // connection
 models.mongoose.connect(models.url)
-    .then(() => {
-        console.log('Connected to database')
-    })
-    .catch((err) => {
-        console.log(`Error! --> ${err.message}`)
-        process.exit()
-    })
+  .then(async () => {
+    console.log('Connected to database');
+
+    // start the server
+    app.listen(port, () => {
+      console.log(`Rest API listening on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.log(`Error! --> ${err.message}`)
+    process.exit()
+  });
 
 // routes
-require('./app/routes/user.route')(app)   // URL for user
-
-app.listen(port, () => {  
-  console.log(`Rest API listening on port ${port}`);
-});
+require('./app/src/routes/user.route')(app); // URL for users

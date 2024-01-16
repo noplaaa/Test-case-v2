@@ -1,7 +1,8 @@
-const models = require('../../models/index')
+const models = require('../../src/models/index')
 const passRules = require('../../utilities/rules/pass.rules')
 const passConfirmRules = require('../../utilities/rules/passConfirm.rules')
 const cityRules = require('../../utilities/rules/city.rules')
+const { validateCity } = require('../../utilities/rules/city.rules')
 const errorHandler = require('../handlers/error.handler')
 const User = models.User;
 
@@ -10,12 +11,12 @@ const findById = async (userId) => {
     try {
         const foundUser = await User.findById(userId)
         return foundUser
-    } catch (error) {
-        throw error
+    } catch (err) {
+        errorHandler(err, res)
     }
 };
 
-// get all users
+// GET ALL USERS
 const findAll = async (req, res) => {
     try {
         const users = await User.find()
@@ -25,7 +26,7 @@ const findAll = async (req, res) => {
     }
 };
 
-// get one user
+// GET ONE USER
 const findOne = async (req, res) => {
     const id = req.params && req.params.id
 
@@ -49,7 +50,7 @@ const findOne = async (req, res) => {
     }
 }
 
-// register
+// REGISTER
 const create = async (req, res) => {
     try {
         const {
@@ -60,7 +61,7 @@ const create = async (req, res) => {
             ...otherUserData
         } = req.body
 
-        // validating...
+        // validation
         const validatedPass = passRules(req.body.pass, res)
         if (validatedPass !== true) {
             res.status(validatedPass.status).send(validatedPass.message)
@@ -73,11 +74,22 @@ const create = async (req, res) => {
             return
         }
 
-        if (!(await cityRules.validator(cityId, res)).isValid) {
-            return
+        // find rules
+        const cityValidationRule = cityRules.find(rule => rule.field === 'cityId');
+
+        if (!cityValidationRule || !cityValidationRule.check) {
+            return res.status(500).send('City validation rule not found or is not valid');
         }
 
-        // creating...
+        // check data from seeders
+        const cityValidationResult = await cityValidationRule.check(cityId, { req, location: 'body', path: 'cityId' });
+
+        if (!cityValidationResult.isEmpty()) {
+            res.status(403).send(cityValidationResult.array()[0].msg);
+            return;
+        }
+
+        // create data
         await User.create({
             email,
             pass,
@@ -95,23 +107,24 @@ const create = async (req, res) => {
     }
 }
 
-// change password
+// CHANGE PASS
 const update = async (req, res) => {
     const id = req.params.id
 
     try {
+        // validation
         const validatedPass = passRules(req.body.pass, res)
         if (validatedPass !== true) {
             res.status(validatedPass.status).send(validatedPass.message)
             return
         }
 
-        const validationResult = passConfirmRules.validator(req.body.pass, req.body.pass_confirm);
-        if (!validationResult.isValid) {
-            res.status(validationResult.status).send(validationResult.message)
+        const validatedPassCon = passConfirmRules.validator(req.body.pass, req.body.pass_confirm);
+        if (!validatedPassCon.isValid) {
+            res.status(validatedPassCon.status).send(validatedPassCon.message)
         }
 
-        // updating...
+        // update data
         const updatedUser = await User.findByIdAndUpdate(id, req.body, {
             useFindAndModify: false,
             new: true,
@@ -127,7 +140,7 @@ const update = async (req, res) => {
     }
 }
 
-// delete user
+// DELETE
 const remove = async (req, res) => {
     const id = req.params.id
 

@@ -1,7 +1,7 @@
-const passport = require('../utilities/passports/user.passport')
 const express = require('express')
-const userController = require('../config/controllers/user.controller')
-const authController = require('../config/controllers/auth.controller')
+const passport = require('../../utilities/passports/user.passport')
+const userController = require('../../config/controllers/user.controller')
+const authController = require('../../config/controllers/auth.controller')
 
 const route = express.Router();
 
@@ -20,7 +20,7 @@ const isAuthenticated = (req, res, next) => {
         console.log("Requested by authed user:", user.email)
         next()
     })(req, res, next)
-};
+}
 
 // endpoints don't need authenticated user
 route.post('/', userController.create)
