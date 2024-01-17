@@ -1,3 +1,0 @@
-const citySeeders = require('./city.seeder')
-
-citySeeders();

@@ -3,7 +3,7 @@ const express = require('express')
 const userController = require('../../config/controllers/user.controller')
 const authController = require('../../config/controllers/auth.controller')
 
-const route = express.Router();
+const route = express.Router()
 
 // auth
 route.post('/auth', authController.login)

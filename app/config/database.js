@@ -1,24 +1,25 @@
 const mongoose = require('mongoose')
-
 const url = "mongodb://localhost:27017/test_case"
 
+// connecting
 const connectDB = async () => {
   try {
-    await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log('Seeders connected');
-  } catch (error) {
-    console.error(`Error connecting to the database: ${error.message}`);
-    throw error;
+    await mongoose.connect(url, {});
+    // console.log('Seeders connected');
+  } catch (err) {
+    console.error(`Error connecting to the database: ${err.message}`);
+    throw err;
   }
 }
 
+// disconnecting
 const disconnectDB = async () => {
   try {
     await mongoose.disconnect()
-    console.log('Seeders disconnected')
-  } catch (error) {
-    console.error(`Error disconnecting from the database: ${error.message}`)
-    throw error;
+    // console.log('Seeders disconnected')
+  } catch (err) {
+    console.error(`Error disconnecting from the database: ${err.message}`)
+    throw err;
   }
 };
 

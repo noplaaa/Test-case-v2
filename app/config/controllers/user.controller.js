@@ -1,10 +1,9 @@
 const models = require('../../src/models/index')
 const passRules = require('../../utilities/rules/pass.rules')
 const passConfirmRules = require('../../utilities/rules/passConfirm.rules')
-const cityRules = require('../../utilities/rules/city.rules')
-const { validateCity } = require('../../utilities/rules/city.rules')
+const validateCity = require('../../utilities/validations/city.validate')
 const errorHandler = require('../handlers/error.handler')
-const User = models.User;
+const User = models.User
 
 // does user authenticated?
 const findById = async (userId) => {
@@ -14,7 +13,7 @@ const findById = async (userId) => {
     } catch (err) {
         errorHandler(err, res)
     }
-};
+}
 
 // GET ALL USERS
 const findAll = async (req, res) => {
@@ -24,7 +23,7 @@ const findAll = async (req, res) => {
     } catch (err) {
         errorHandler(err, res)
     }
-};
+}
 
 // GET ONE USER
 const findOne = async (req, res) => {
@@ -62,6 +61,8 @@ const create = async (req, res) => {
         } = req.body
 
         // validation
+
+        // password
         const validatedPass = passRules(req.body.pass, res)
         if (validatedPass !== true) {
             res.status(validatedPass.status).send(validatedPass.message)
@@ -74,19 +75,25 @@ const create = async (req, res) => {
             return
         }
 
-        // find rules
-        const cityValidationRule = cityRules.find(rule => rule.field === 'cityId');
+        // city data
+        try {
+            const cityData = await validateCity(req.body.cityId)
 
-        if (!cityValidationRule || !cityValidationRule.check) {
-            return res.status(500).send('City validation rule not found or is not valid');
-        }
+            if (cityData.error) {
+                return res.status(403).send(cityData.message)
+            }
 
-        // check data from seeders
-        const cityValidationResult = await cityValidationRule.check(cityId, { req, location: 'body', path: 'cityId' });
-
-        if (!cityValidationResult.isEmpty()) {
-            res.status(403).send(cityValidationResult.array()[0].msg);
-            return;
+            try {
+                cityData.check(req.body.cityId)
+            } catch (validationErr) {
+                errorHandler(validationErr, res)
+            }
+        } catch (err) {
+            if (err.message.includes("isn't available yet")) {
+                return res.status(403).send(err.message)
+            } else {
+                errorHandler(err, res)
+            }
         }
 
         // create data
@@ -103,6 +110,7 @@ const create = async (req, res) => {
             res.status(err.status).send(err.message)
         } else {
             errorHandler(err, res)
+            return
         }
     }
 }
