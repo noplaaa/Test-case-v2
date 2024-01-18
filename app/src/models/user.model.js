@@ -1,6 +1,7 @@
 module.exports = mongoose => {
   const emailRules = require('../../utilities/rules/email.rules')
   const passRules = require('../../utilities/rules/pass.rules')
+
   const schema = mongoose.Schema({
     email: {
       type: String,
@@ -26,10 +27,15 @@ module.exports = mongoose => {
       type: String,
       required: true,
     },
+    cityName: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'City',
+      required: true,
+    },
     hobbies: String,
   }, {
     timestamps: true,
-  });
+  })
 
   schema.method('toJSON', function () {
     const {
@@ -40,7 +46,7 @@ module.exports = mongoose => {
     object.id = _id
 
     return object
-  });
+  })
 
   return mongoose.model('User', schema)
 }
