@@ -2,7 +2,7 @@ const express = require('express')
 const passport = require('../utilities/passports/user.passport')
 const userController = require('../config/controllers/user.controller')
 const authController = require('../config/controllers/auth.controller')
-const route = express.Router()
+const route = express.Router();
 
 // auth
 route.post('/auth', authController.login)
@@ -14,7 +14,6 @@ const isAuthenticated = (req, res, next) => {
             console.error('Authentication error:', err)
             return res.status(401).json({ error: 'Unauthorized' })
         }
-        req.user = user
         next()
     })(req, res, next)
 }
@@ -29,7 +28,7 @@ route.get('/:id', userController.findOne)
 route.put('/:id', userController.update)
 route.delete('/:id', userController.remove)
 
-route.get('/', userController.findAll)
+// route.get('/', cityController.findAll)
 // route.get('/', cityController.findOne)
 
 module.exports = (app) => {
