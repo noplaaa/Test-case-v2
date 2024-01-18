@@ -60,9 +60,9 @@ const create = async (req, res) => {
             ...otherUserData
         } = req.body
 
-        // validation
+        // validation :
 
-        // password
+        // for password
         const validatedPass = passRules(req.body.pass, res)
         if (validatedPass !== true) {
             res.status(validatedPass.status).send(validatedPass.message)
@@ -75,7 +75,7 @@ const create = async (req, res) => {
             return
         }
 
-        // city data
+        // for city data
         try {
             const cityData = await validateCity(req.body.cityId)
 
@@ -88,15 +88,16 @@ const create = async (req, res) => {
             } catch (validationErr) {
                 errorHandler(validationErr, res)
             }
-        } catch (err) {
-            if (err.message.includes("isn't available yet")) {
+        } 
+        catch (err) {
+            if (err.message.includes("This city isn't available yet")) {
                 return res.status(403).send(err.message)
             } else {
                 errorHandler(err, res)
             }
         }
 
-        // create data
+        // create new data
         await User.create({
             email,
             pass,
