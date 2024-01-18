@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const models = require('../../models')
+const models = require('../../src/models/index')
 const errorHandler = require('../handlers/error.handler')
 const auth = models.User
 
