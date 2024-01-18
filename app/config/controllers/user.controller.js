@@ -52,11 +52,13 @@ const findOne = async (req, res) => {
 // REGISTER
 const create = async (req, res) => {
     try {
+        let cityData // waiting for validation's response
+
         const {
             email,
             pass,
             pass_confirm,
-            cityId,
+            cityName,
             ...otherUserData
         } = req.body
 
@@ -77,34 +79,35 @@ const create = async (req, res) => {
 
         // for city data
         try {
-            const cityData = await validateCity(req.body.cityId)
+            cityData = await validateCity(cityName) // array of city
 
             if (cityData.error) {
                 return res.status(403).send(cityData.message)
             }
 
             try {
-                cityData.check(req.body.cityId)
+                cityData.check(cityName)
             } catch (validationErr) {
                 errorHandler(validationErr, res)
+                return
             }
-        } 
-        catch (err) {
+        } catch (err) {
             if (err.message.includes("This city isn't available yet")) {
                 return res.status(403).send(err.message)
             } else {
                 errorHandler(err, res)
+                return
             }
         }
 
-        // create new data
+        // create new user
         await User.create({
             email,
             pass,
             pass_confirm,
-            cityId,
+            cityName: cityData.cityId, // Use cityName from cityData
             ...otherUserData,
-        });
+        })
         res.status(201).send('Registration successful')
     } catch (err) {
         if (err.status) {
@@ -128,7 +131,7 @@ const update = async (req, res) => {
             return
         }
 
-        const validatedPassCon = passConfirmRules.validator(req.body.pass, req.body.pass_confirm);
+        const validatedPassCon = passConfirmRules.validator(req.body.pass, req.body.pass_confirm)
         if (!validatedPassCon.isValid) {
             res.status(validatedPassCon.status).send(validatedPassCon.message)
         }

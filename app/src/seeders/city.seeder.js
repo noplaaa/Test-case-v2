@@ -41,8 +41,8 @@ const generateData = () => {
     'Tangerang',
     'Tasikmalaya',
     'Yogyakarta',
-  ].map(city => ({ cityId: city }));
-};
+  ].map(City => ({ cityName: City }))
+}
 
 const generateSeeder = async () => {
   try {
@@ -58,4 +58,4 @@ const generateSeeder = async () => {
   }
 }
 
-module.exports = generateSeeder;
+module.exports = generateSeeder
