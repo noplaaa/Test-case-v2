@@ -26,6 +26,11 @@ module.exports = mongoose => {
       type: String,
       required: true,
     },
+    cityId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'City',
+      required: true,
+    },
     hobbies: String,
   }, {
     timestamps: true,
