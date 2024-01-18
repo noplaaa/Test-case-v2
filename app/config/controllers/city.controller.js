@@ -12,6 +12,31 @@ const findAll = async (req, res) => {
     }
 }
 
+// GET ONE CITY
+const findOne = async (req, res) => {
+    const id = req.params && req.params.id
+
+    if (!id) {
+        return res.status(400).send('Invalid city ID')
+    }
+
+    try {
+        const data = await City.findById(id)
+
+        if (!data) {
+            return res.status(404).send('City not found')
+        }
+
+        res.send(data)
+    } catch (err) {
+        if (err.name === 'CastError') {
+            return res.status(400).send('Invalid city ID')
+        }
+        errorHandler(err, res)
+    }
+}
+
 module.exports = {
-    findAll
+    findAll,
+    findOne
 }

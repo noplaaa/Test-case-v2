@@ -1,8 +1,8 @@
-const models = require('../../src/models/index')
 const passRules = require('../../utilities/rules/pass.rules')
 const passConfirmRules = require('../../utilities/rules/passConfirm.rules')
 const validateCity = require('../../utilities/validations/city.validate')
 const errorHandler = require('../handlers/error.handler')
+const models = require('../../src/models/index')
 const User = models.User
 
 // does user authenticated?
@@ -34,7 +34,7 @@ const findOne = async (req, res) => {
     }
 
     try {
-        const data = await findById(id)
+        const data = await User.findById(id)
 
         if (!data) {
             return res.status(404).send('User not found')

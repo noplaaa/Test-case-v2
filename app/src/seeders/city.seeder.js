@@ -1,5 +1,5 @@
-const { connectDB, disconnectDB } = require('../config/database')
-const models = require('../src/models/index')
+const { connectDB, disconnectDB } = require('../../config/database')
+const models = require('../models/index')
 const City = models.City
 
 const generateData = () => {
