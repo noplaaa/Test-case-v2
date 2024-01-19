@@ -18,10 +18,16 @@ const findById = async (userId) => {
 // GET ALL USERS
 const findAll = async (req, res) => {
     try {
-        const users = await User.find()
-        res.json(users)
+        const users = await User.find().populate('cityName');
+        const usersData = users.map(userData => ({
+            ...userData.toObject(),
+            // user has city?
+            cityName: userData.cityName ? userData.cityName.cityName : "Undefined" // value for unexpected case
+        }))
+
+        res.json(usersData);
     } catch (err) {
-        errorHandler(err, res)
+        errorHandler(err, res);
     }
 }
 
