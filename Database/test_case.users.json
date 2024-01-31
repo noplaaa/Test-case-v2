@@ -1,0 +1,210 @@
+[{
+  "_id": {
+    "$oid": "65a9f498d37b997718b55273"
+  },
+  "email": "giska@gmail.com",
+  "pass": "Password123",
+  "pass_confirm": "Password123",
+  "name": "Giska",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6d05"
+  },
+  "hobbies": "Teknologi",
+  "createdAt": {
+    "$date": "2024-01-19T04:03:36.772Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T04:03:36.772Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65aa2772c15bb066c8d3ee4c"
+  },
+  "email": "parel@gmail.com",
+  "pass": "sayaFarel99",
+  "pass_confirm": "sayaFarel99",
+  "name": "Farel",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6cec"
+  },
+  "hobbies": "Travel",
+  "createdAt": {
+    "$date": "2024-01-19T07:40:34.940Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T07:40:34.940Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65aa27d3c15bb066c8d3ee58"
+  },
+  "email": "yajit@gmail.com",
+  "pass": "fansJeketi10",
+  "pass_confirm": "fansJeketi10",
+  "name": "Yazid",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6cec"
+  },
+  "hobbies": "Musik",
+  "createdAt": {
+    "$date": "2024-01-19T07:42:11.033Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T07:42:11.033Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65aa27f9c15bb066c8d3ee5d"
+  },
+  "email": "nopal@gmail.com",
+  "pass": "Hehew555",
+  "pass_confirm": "Hehew555",
+  "name": "Naufal",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6cec"
+  },
+  "hobbies": "Olahraga",
+  "createdAt": {
+    "$date": "2024-01-19T07:42:49.752Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T07:42:49.752Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65aa2877c15bb066c8d3ee63"
+  },
+  "email": "rizal@gmail.com",
+  "pass": "tehBotolbro1",
+  "pass_confirm": "tehBotolbro1",
+  "name": "Rizal",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6d09"
+  },
+  "hobbies": "Games",
+  "createdAt": {
+    "$date": "2024-01-19T07:44:55.996Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T07:44:55.996Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65aa289ac15bb066c8d3ee66"
+  },
+  "email": "madun@gmail.com",
+  "pass": "akuMadun90",
+  "pass_confirm": "akuMadun90",
+  "name": "Bro Madun",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6d0e"
+  },
+  "hobbies": "Olahraga",
+  "createdAt": {
+    "$date": "2024-01-19T07:45:30.874Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T07:45:30.874Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65aa28f2c15bb066c8d3ee6c"
+  },
+  "email": "zulkifli@gmail.com",
+  "pass": "zulLima5",
+  "pass_confirm": "zulLima5",
+  "name": "Zulkifli",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6cea"
+  },
+  "hobbies": "Petualang",
+  "createdAt": {
+    "$date": "2024-01-19T07:46:58.416Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T07:46:58.416Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65aa2a3fc15bb066c8d3ee8c"
+  },
+  "email": "user@gmail.com",
+  "pass": "Password123",
+  "pass_confirm": "Password123",
+  "name": "Akun User",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6cec"
+  },
+  "hobbies": "Gak ada",
+  "createdAt": {
+    "$date": "2024-01-19T07:52:31.411Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T07:52:31.411Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65aa2a7fc15bb066c8d3ee93"
+  },
+  "email": "ijat@gmail.com",
+  "pass": "Password123",
+  "pass_confirm": "Password123",
+  "name": "Izzat Imalano",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6cf7"
+  },
+  "hobbies": "Games",
+  "createdAt": {
+    "$date": "2024-01-19T07:53:35.428Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T07:53:35.428Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65aa2aaac15bb066c8d3ee96"
+  },
+  "email": "reihan@gmail.com",
+  "pass": "reiHanrei3",
+  "pass_confirm": "reiHanrei3",
+  "name": "Reihan",
+  "address": "Rumah",
+  "cityName": {
+    "$oid": "65a9f037c2cef1c307ec6d08"
+  },
+  "hobbies": "Seni",
+  "createdAt": {
+    "$date": "2024-01-19T07:54:18.363Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T07:54:18.363Z"
+  },
+  "__v": 0
+}]

@@ -1,25 +1,29 @@
-const jwt = require('jsonwebtoken')
-const models = require('../../src/models/index')
-const errorHandler = require('../handlers/error.handler')
-const auth = models.User
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const models = require('../../src/models/index');
+const errorHandler = require('../handlers/error.handler');
+const auth = models.User;
 
 exports.login = async (req, res) => {
-    const { email, pass } = req.body
+    const { email, pass } = req.body;
 
     try {
-        const user = await auth.findOne({ email })
+        const user = await auth.findOne({ email });
 
         if (user === null) {
-            return res.status(404).send('User not found')
+            return res.status(404).send('User not found');
         }
 
-        if (pass === user.pass) {
-            const token = jwt.sign({ sub: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' })
-            res.json({ token, message: 'Logged in successfully' })
+        // Compare hashed password
+        const isPasswordValid = await bcrypt.compare(pass, user.pass);
+
+        if (isPasswordValid) {
+            const token = jwt.sign({ sub: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+            res.json({ token, message: 'Logged in successfully' });
         } else {
-            res.status(401).send('Credentials invalid')
+            res.status(401).send('Credentials invalid');
         }
     } catch (err) {
-        errorHandler(err, res)
+        errorHandler(err, res);
     }
-}
+};
