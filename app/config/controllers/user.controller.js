@@ -2,6 +2,7 @@ const passRules = require('../../utilities/rules/pass.rules')
 const passConfirmRules = require('../../utilities/rules/passConfirm.rules')
 const validateCity = require('../../utilities/validations/city.validate')
 const errorHandler = require('../handlers/error.handler')
+const bcrypt = require('bcrypt');
 const models = require('../../src/models/index')
 const User = models.User
 
@@ -106,10 +107,13 @@ const create = async (req, res) => {
             }
         }
 
+        // hashing
+        const hashedPassword = await bcrypt.hash(pass, 10);
+
         // create new user
         await User.create({
             email,
-            pass,
+            pass: hashedPassword,
             pass_confirm,
             cityName: cityData.cityId, // Use cityName from cityData
             ...otherUserData,
@@ -127,36 +131,44 @@ const create = async (req, res) => {
 
 // CHANGE PASS
 const update = async (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
 
     try {
-        // validation
-        const validatedPass = passRules(req.body.pass, res)
+        // Validation
+        const validatedPass = passRules(req.body.pass, res);
         if (validatedPass !== true) {
-            res.status(validatedPass.status).send(validatedPass.message)
-            return
+            res.status(validatedPass.status).send(validatedPass.message);
+            return;
         }
 
-        const validatedPassCon = passConfirmRules.validator(req.body.pass, req.body.pass_confirm)
+        const validatedPassCon = passConfirmRules.validator(req.body.pass, req.body.pass_confirm);
         if (!validatedPassCon.isValid) {
-            res.status(validatedPassCon.status).send(validatedPassCon.message)
+            res.status(validatedPassCon.status).send(validatedPassCon.message);
+            return;
         }
 
-        // update data
-        const updatedUser = await User.findByIdAndUpdate(id, req.body, {
-            useFindAndModify: false,
-            new: true,
-        })
+        // Hash the new password
+        const hashedPassword = await bcrypt.hash(req.body.pass, 10);
+
+        // Update data
+        const updatedUser = await User.findByIdAndUpdate(
+            id,
+            { pass: hashedPassword },
+            {
+                useFindAndModify: false,
+                new: true,
+            }
+        );
 
         if (!updatedUser) {
-            return res.status(404).send('User not found')
+            return res.status(404).send('User not found');
         }
 
-        res.status(201).send('Password changed successfully')
+        res.status(201).send('Password changed successfully');
     } catch (err) {
-        errorHandler(err, res)
+        errorHandler(err, res);
     }
-}
+};
 
 // DELETE
 const remove = async (req, res) => {

@@ -1,0 +1,481 @@
+[{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cea"
+  },
+  "cityName": "Aceh",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.049Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.049Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6ceb"
+  },
+  "cityName": "Ambon",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.058Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.058Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cec"
+  },
+  "cityName": "Bandung",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.058Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.058Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6ced"
+  },
+  "cityName": "Bekasi",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.059Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.059Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cee"
+  },
+  "cityName": "Bali",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.060Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.060Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cef"
+  },
+  "cityName": "Banten",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.060Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.060Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf0"
+  },
+  "cityName": "Banjarmasin",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.060Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.060Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf1"
+  },
+  "cityName": "Cimahi",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.061Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.061Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf2"
+  },
+  "cityName": "Depok",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.061Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.061Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf3"
+  },
+  "cityName": "Denpasar",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.062Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.062Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf4"
+  },
+  "cityName": "Garut",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.062Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.062Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf5"
+  },
+  "cityName": "Gorontalo",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.062Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.062Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf6"
+  },
+  "cityName": "Jambi",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.062Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.062Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf7"
+  },
+  "cityName": "Jakarta",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.063Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.063Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf8"
+  },
+  "cityName": "Kudus",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.063Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.063Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cf9"
+  },
+  "cityName": "Kupang",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.064Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.064Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cfa"
+  },
+  "cityName": "Makassar",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.064Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.064Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cfb"
+  },
+  "cityName": "Manado",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.064Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.064Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cfc"
+  },
+  "cityName": "Mamuju",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.064Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.064Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cfd"
+  },
+  "cityName": "Madiun",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.065Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.065Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cfe"
+  },
+  "cityName": "Malang",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.065Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.065Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6cff"
+  },
+  "cityName": "Medan",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.065Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.065Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d00"
+  },
+  "cityName": "NTB",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.065Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.065Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d01"
+  },
+  "cityName": "NTT",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.066Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.066Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d02"
+  },
+  "cityName": "Padang",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.070Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.070Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d03"
+  },
+  "cityName": "Palu",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.071Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.071Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d04"
+  },
+  "cityName": "Papua",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.072Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.072Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d05"
+  },
+  "cityName": "Pontianak",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.072Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.072Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d06"
+  },
+  "cityName": "Sidoarjo",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.072Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.072Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d07"
+  },
+  "cityName": "Subang",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.073Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.073Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d08"
+  },
+  "cityName": "Solo",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.073Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.073Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d09"
+  },
+  "cityName": "Semarang",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.073Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.073Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d0a"
+  },
+  "cityName": "Surabaya",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.074Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.074Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d0b"
+  },
+  "cityName": "Serang",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.074Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.074Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d0c"
+  },
+  "cityName": "Tangerang",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.075Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.075Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d0d"
+  },
+  "cityName": "Tasikmalaya",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.076Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.076Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "65a9f037c2cef1c307ec6d0e"
+  },
+  "cityName": "Yogyakarta",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2024-01-19T03:44:56.077Z"
+  },
+  "updatedAt": {
+    "$date": "2024-01-19T03:44:56.077Z"
+  }
+}]
