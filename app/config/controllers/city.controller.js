@@ -3,7 +3,7 @@ const errorHandler = require('../handlers/error.handler')
 const City = models.City
 
 // GET ALL CITIES
-const findAll = async (req, res) => {
+exports.findAll = async (req, res) => {
     try {
         const cities = await City.find();
         res.json(cities);
@@ -13,7 +13,7 @@ const findAll = async (req, res) => {
 }
 
 // GET ONE CITY
-const findOne = async (req, res) => {
+exports.findOne = async (req, res) => {
     const id = req.params && req.params.id
 
     if (!id) {
@@ -34,9 +34,4 @@ const findOne = async (req, res) => {
         }
         errorHandler(err, res)
     }
-}
-
-module.exports = {
-    findAll,
-    findOne
 }

@@ -9,5 +9,6 @@ module.exports = {
   mongoose,
   url: dbConfig.url,
   User,
+  City,
   Thread
 }
