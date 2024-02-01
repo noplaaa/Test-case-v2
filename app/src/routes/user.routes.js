@@ -1,5 +1,4 @@
 const express = require('express')
-
 const passport = require('../../utilities/passports/user.passport')
 const authController = require('../../config/controllers/auth.controller')
 const userController = require('../../config/controllers/user.controller')
@@ -25,7 +24,7 @@ const isAuthenticated = (req, res, next) => {
 route.post('/', userController.create)
 
 // need authenticate
-// route.use(isAuthenticated)
+route.use(isAuthenticated)
 route.get('/user', userController.findAll)
 route.get('/user/:id', userController.findOne)
 route.put('/user/:id', userController.update)

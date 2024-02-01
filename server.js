@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
-const models = require('./app/src/models/index')
+const models = require('./app/src/models/index');
+const authMiddleware = require('./app/config/middleware/auth.middleware');
 const app = express()
 const port = 3000;
 

@@ -1,5 +1,6 @@
 const errorHandler = require('../handlers/error.handler')
 const models = require('../../src/models/index')
+const jwt = require('jsonwebtoken')
 const User = models.User
 const Thread = models.Thread
 
@@ -49,8 +50,12 @@ exports.create = async (req, res) => {
     try {
         const { title, text } = req.body
 
+        // get token from header
+        const token = req.headers.authorization.split(' ')[1]
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
+
         // email exists?
-        const userEmail = req.user ? req.user.email : null
+        const userEmail = decodedToken.email
         if (!userEmail) {
             return res.status(401).send('Authorization failed')
         }
@@ -66,7 +71,9 @@ exports.create = async (req, res) => {
             userEmail: userEmail,
             thread: newThread,
         })
-    } catch (err) {
+    } 
+    
+    catch (err) {
         if (err.status) {
             res.status(err.status).send(err.message)
         } else {
