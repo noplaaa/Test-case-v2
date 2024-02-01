@@ -19,7 +19,7 @@ exports.login = async (req, res) => {
         const isPasswordValid = await bcrypt.compare(pass, user.pass)
 
         if (isPasswordValid) {
-            // set logged in acount to session 
+            // set logged in acount to session
             loggedInUsers.add(user.email)
 
             const token = jwt.sign({ sub: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' })
