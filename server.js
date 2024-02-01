@@ -1,9 +1,8 @@
 const express = require('express')
 const cors = require('cors')
-const models = require('./app/src/models/index');
-const authMiddleware = require('./app/config/middleware/auth.middleware');
+const models = require('./app/src/models/index')
 const app = express()
-const port = 3000;
+const port = 3000
 
 const corsOptions = {
   origin: '*',
@@ -27,7 +26,7 @@ models.mongoose.connect(models.url)
   .catch((err) => {
     console.log(`Error! --> ${err.message}`)
     process.exit()
-  });
+  })
 
 // routes
-require('./app/src/routes/user.routes')(app); // URL for users
+require('./app/src/routes/user.routes')(app) // URL for users
