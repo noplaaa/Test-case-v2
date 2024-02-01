@@ -29,4 +29,4 @@ models.mongoose.connect(models.url)
   });
 
 // routes
-require('./app/src/routes/user.route')(app); // URL for users
+require('./app/src/routes/user.routes')(app); // URL for users

@@ -35,6 +35,7 @@ const findAll = async (req, res) => {
 // GET ONE USER
 const findOne = async (req, res) => {
     const id = req.params && req.params.id
+    console.log(req.headers)
 
     if (!id) {
         return res.status(400).send('Invalid user ID')
