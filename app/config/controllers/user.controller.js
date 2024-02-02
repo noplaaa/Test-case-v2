@@ -7,9 +7,9 @@ const models = require('../../src/models/index')
 const User = models.User
 
 // does user authenticated?
-const findById = async (userId) => {
+exports.findById = async (id) => {
     try {
-        const foundUser = await User.findById(userId)
+        const foundUser = await User.findById(id)
         return foundUser
     } catch (err) {
         errorHandler(err, res)
@@ -17,7 +17,7 @@ const findById = async (userId) => {
 }
 
 // GET ALL USERS
-const findAll = async (req, res) => {
+exports.findAll = async (req, res) => {
     try {
         const users = await User.find().populate('cityName')
         const usersData = users.map(data => ({
@@ -33,22 +33,28 @@ const findAll = async (req, res) => {
 }
 
 // GET ONE USER
-const findOne = async (req, res) => {
+exports.findOne = async (req, res) => {
     const id = req.params && req.params.id
-    console.log(req.headers)
 
     if (!id) {
         return res.status(400).send('Invalid user ID')
     }
 
     try {
-        const data = await User.findById(id)
+        const users = await User.findById(id).populate('cityName')
 
-        if (!data) {
+        if (!users) {
             return res.status(404).send('User not found')
         }
 
-        res.send(data)
+        // user has city?
+        const usersData = {
+            ...users.toObject(),
+            // user has city?
+            cityName: users.cityName ? users.cityName.cityName : "Undefined" // value for unexpected case
+        }
+
+        res.send(usersData)
     } catch (err) {
         if (err.name === 'CastError') {
             return res.status(400).send('Invalid user ID')
@@ -58,7 +64,7 @@ const findOne = async (req, res) => {
 }
 
 // REGISTER
-const create = async (req, res) => {
+exports.create = async (req, res) => {
     try {
         let cityData // waiting for validation's response
 
@@ -116,7 +122,7 @@ const create = async (req, res) => {
             email,
             pass: hashedPassword,
             pass_confirm,
-            cityName: cityData.cityId, // Use cityName from cityData
+            cityName: cityData.cityId, // is city exist in city data?
             ...otherUserData,
         })
         res.status(201).send('Registration successful')
@@ -131,7 +137,7 @@ const create = async (req, res) => {
 }
 
 // CHANGE PASS
-const update = async (req, res) => {
+exports.update = async (req, res) => {
     const id = req.params.id
 
     try {
@@ -153,9 +159,9 @@ const update = async (req, res) => {
 
         // Update data
         const updatedUser = await User.findByIdAndUpdate(
-            id,
-            { pass: hashedPassword },
-            {
+            id, {
+                pass: hashedPassword
+            }, {
                 useFindAndModify: false,
                 new: true,
             }
@@ -172,12 +178,12 @@ const update = async (req, res) => {
 }
 
 // DELETE
-const remove = async (req, res) => {
+exports.remove = async (req, res) => {
     const id = req.params.id
 
     User
-        .findByIdAndDelete(id)
-        .then((data) => {
+    .findByIdAndDelete(id)
+    .then((data) => {
             if (!data) {
                 return res.status(404).send('User not found')
             }
@@ -186,13 +192,4 @@ const remove = async (req, res) => {
         .catch((err) => {
             errorHandler(err, res)
         })
-}
-
-module.exports = {
-    findById,
-    findAll,
-    findOne,
-    create,
-    update,
-    remove
 }

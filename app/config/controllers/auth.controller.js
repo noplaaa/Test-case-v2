@@ -22,8 +22,8 @@ exports.login = async (req, res) => {
             // set logged in acount to session
             loggedInUsers.add(user.email)
 
-            const token = jwt.sign({ sub: user.id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '1h' })
-            res.json({ token, email: user.email, message: 'Logged in successfully' })
+            const token = jwt.sign({ sub: user.id, email: user.email, cityName: user.cityName }, process.env.JWT_SECRET, { expiresIn: '1h' })
+            res.json({ token, id: user.id, email: user.email, cityName: user.cityName, message: 'Logged in successfully' })
         } else {
             res.status(401).send('Credentials invalid')
         }

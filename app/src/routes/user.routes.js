@@ -33,11 +33,11 @@ route.delete('/user/:id', userController.remove)
 route.get('/city', cityController.findAll)
 route.get('/city/:id', cityController.findOne)
 
-// route.get('/thread', threadController.findAll)
-// route.get('/thread/:id', threadController.findOne)
+route.get('/thread', threadController.findAll)
+route.get('/thread/:id', threadController.findOne)
 route.post('/thread/create', threadController.create)
 // route.put('/thread/:id', threadController.update)
-// route.delete('/thread/:id', threadController.remove)
+route.delete('/thread/:id', threadController.remove)
 
 module.exports = (app) => {
     app.use('/api', route)
