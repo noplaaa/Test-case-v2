@@ -1,4 +1,5 @@
 const models = require('../../src/models/index')
+const errorHandler = require('../handlers/error.handler')
 const Like = models.Like
 
 exports.likeThread = async (req, res) => {
@@ -6,21 +7,16 @@ exports.likeThread = async (req, res) => {
     const { threadID } = req.params
     const userId = req.user.id // using decoded user from token
 
-    // Periksa apakah pengguna sudah menyukai thread
-    const existingLike = await Like.findOne({ user: userId, thread: threadId })
+    const existingLike = await Like.findOne({ user: userId, thread: threadID })
 
     if (existingLike) {
-      // Jika sudah ada, hapus like
       await Like.findByIdAndRemove(existingLike._id)
-      res.json({ message: 'Thread disliked successfully' })
+      res.json({ message: 'disliked' })
     } else {
-      // Jika belum ada, buat like baru
-      await Like.create({ user: userId, thread: threadId })
-      res.json({ message: 'Thread liked successfully' })
+      await Like.create({ user: userId, thread: threadID })
+      res.json({ message: 'liked' })
     }
   } catch (err) {
-    // Handle errors
-    console.error(err)
-    res.status(500).send('Internal Server Error')
+    errorHandler(err, res)
   }
 }
