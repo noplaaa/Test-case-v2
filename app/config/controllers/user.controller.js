@@ -2,14 +2,14 @@ const passRules = require('../../utilities/rules/pass.rules')
 const passConfirmRules = require('../../utilities/rules/passConfirm.rules')
 const validateCity = require('../../utilities/validations/city.validate')
 const errorHandler = require('../handlers/error.handler')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt')
 const models = require('../../src/models/index')
 const User = models.User
 
 // does user authenticated?
-const findById = async (userId) => {
+exports.findById = async (id) => {
     try {
-        const foundUser = await User.findById(userId)
+        const foundUser = await User.findById(id)
         return foundUser
     } catch (err) {
         errorHandler(err, res)
@@ -17,13 +17,13 @@ const findById = async (userId) => {
 }
 
 // GET ALL USERS
-const findAll = async (req, res) => {
+exports.findAll = async (req, res) => {
     try {
         const users = await User.find().populate('cityName')
-        const usersData = users.map(userData => ({
-            ...userData.toObject(),
+        const usersData = users.map(data => ({
+            ...data.toObject(),
             // user has city?
-            cityName: userData.cityName ? userData.cityName.cityName : "Undefined" // value for unexpected case
+            cityName: data.cityName ? data.cityName.cityName : "Undefined" // value for unexpected case
         }))
 
         res.json(usersData)
@@ -33,7 +33,7 @@ const findAll = async (req, res) => {
 }
 
 // GET ONE USER
-const findOne = async (req, res) => {
+exports.findOne = async (req, res) => {
     const id = req.params && req.params.id
 
     if (!id) {
@@ -41,13 +41,20 @@ const findOne = async (req, res) => {
     }
 
     try {
-        const data = await User.findById(id)
+        const users = await User.findById(id).populate('cityName')
 
-        if (!data) {
+        if (!users) {
             return res.status(404).send('User not found')
         }
 
-        res.send(data)
+        // user has city?
+        const usersData = {
+            ...users.toObject(),
+            // user has city?
+            cityName: users.cityName ? users.cityName.cityName : "Undefined" // value for unexpected case
+        }
+
+        res.send(usersData)
     } catch (err) {
         if (err.name === 'CastError') {
             return res.status(400).send('Invalid user ID')
@@ -57,7 +64,7 @@ const findOne = async (req, res) => {
 }
 
 // REGISTER
-const create = async (req, res) => {
+exports.create = async (req, res) => {
     try {
         let cityData // waiting for validation's response
 
@@ -108,14 +115,14 @@ const create = async (req, res) => {
         }
 
         // hashing
-        const hashedPassword = await bcrypt.hash(pass, 10);
+        const hashedPassword = await bcrypt.hash(pass, 10)
 
         // create new user
         await User.create({
             email,
             pass: hashedPassword,
             pass_confirm,
-            cityName: cityData.cityId, // Use cityName from cityData
+            cityName: cityData.cityId, // is city exist in city data?
             ...otherUserData,
         })
         res.status(201).send('Registration successful')
@@ -130,53 +137,53 @@ const create = async (req, res) => {
 }
 
 // CHANGE PASS
-const update = async (req, res) => {
-    const id = req.params.id;
+exports.update = async (req, res) => {
+    const id = req.params.id
 
     try {
         // Validation
-        const validatedPass = passRules(req.body.pass, res);
+        const validatedPass = passRules(req.body.pass, res)
         if (validatedPass !== true) {
-            res.status(validatedPass.status).send(validatedPass.message);
-            return;
+            res.status(validatedPass.status).send(validatedPass.message)
+            return
         }
 
-        const validatedPassCon = passConfirmRules.validator(req.body.pass, req.body.pass_confirm);
+        const validatedPassCon = passConfirmRules.validator(req.body.pass, req.body.pass_confirm)
         if (!validatedPassCon.isValid) {
-            res.status(validatedPassCon.status).send(validatedPassCon.message);
-            return;
+            res.status(validatedPassCon.status).send(validatedPassCon.message)
+            return
         }
 
         // Hash the new password
-        const hashedPassword = await bcrypt.hash(req.body.pass, 10);
+        const hashedPassword = await bcrypt.hash(req.body.pass, 10)
 
         // Update data
         const updatedUser = await User.findByIdAndUpdate(
-            id,
-            { pass: hashedPassword },
-            {
+            id, {
+                pass: hashedPassword
+            }, {
                 useFindAndModify: false,
                 new: true,
             }
-        );
+        )
 
         if (!updatedUser) {
-            return res.status(404).send('User not found');
+            return res.status(404).send('User not found')
         }
 
-        res.status(201).send('Password changed successfully');
+        res.status(201).send('Password changed successfully')
     } catch (err) {
-        errorHandler(err, res);
+        errorHandler(err, res)
     }
-};
+}
 
 // DELETE
-const remove = async (req, res) => {
+exports.remove = async (req, res) => {
     const id = req.params.id
 
     User
-        .findByIdAndDelete(id)
-        .then((data) => {
+    .findByIdAndDelete(id)
+    .then((data) => {
             if (!data) {
                 return res.status(404).send('User not found')
             }
@@ -185,13 +192,4 @@ const remove = async (req, res) => {
         .catch((err) => {
             errorHandler(err, res)
         })
-}
-
-module.exports = {
-    findById,
-    findAll,
-    findOne,
-    create,
-    update,
-    remove
 }

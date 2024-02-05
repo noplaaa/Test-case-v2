@@ -7,7 +7,6 @@
     "testcase": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node ./app/src/seeders/index.js"
-
   },
   "keywords": [],
   "author": "",
