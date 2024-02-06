@@ -1,6 +1,6 @@
 const models = require('../../../src/models/index')
 
-async function getThreadData() {
+async function getAllThreadData() {
   try {
     const threadData = await models.Thread.aggregate([
       {
@@ -50,4 +50,4 @@ async function getThreadData() {
   }
 }
 
-module.exports = getThreadData
+module.exports = getAllThreadData

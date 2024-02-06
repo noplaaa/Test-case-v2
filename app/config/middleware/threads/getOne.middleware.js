@@ -1,7 +1,7 @@
 const models = require('../../../src/models/index')
 const mongoose = models.mongoose
 
-async function getThreadData() {
+async function getOneThreadData(id) {
     try {
         const threadData = await models.Thread.aggregate([{
                 $match: {
@@ -55,4 +55,4 @@ async function getThreadData() {
     }
 }
 
-module.exports = getThreadData
+module.exports = getOneThreadData

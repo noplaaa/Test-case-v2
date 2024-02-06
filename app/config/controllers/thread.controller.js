@@ -1,8 +1,8 @@
 const errorHandler = require('../handlers/error.handler')
 const jwt = require('jsonwebtoken')
 const models = require('../../src/models/index')
-const getThreadData = require('../middleware/threads/getAll.middleware')
-const mongoose = models.mongoose
+const getAllThreadData = require('../middleware/threads/getAll.middleware')
+const getOneThreadData = require('../middleware/threads/getOne.middleware')
 const User = models.User
 const Thread = models.Thread
 
@@ -19,7 +19,7 @@ exports.findById = async (userId) => {
 // GET ALL THREADS
 exports.findAll = async (req, res) => {
   try {
-    const threadData = await getThreadData()
+    const threadData = await getAllThreadData()
     res.json(threadData)
   } catch (err) {
     errorHandler(err, res)
@@ -35,14 +35,11 @@ exports.findOne = async (req, res) => {
   }
 
   try {
-    const threadData = await getThreadData()
-    res.json(threadData)
-
-    if (!data || data.length === 0) {
+    const threadData = await getOneThreadData(id)
+    if (!threadData || threadData.length === 0) {
       return res.status(404).send('Thread not found')
     }
-
-    res.send(data[0])
+    res.json(threadData)
   } catch (err) {
     errorHandler(err, res)
   }
