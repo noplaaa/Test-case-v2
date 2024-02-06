@@ -7,10 +7,15 @@ const auth = models.User
 const loggedInUsers = new Set()
 
 exports.login = async (req, res) => {
-    const { email, pass } = req.body
+    const {
+        email,
+        pass
+    } = req.body
 
     try {
-        const user = await auth.findOne({ email })
+        const user = await auth.findOne({
+            email
+        })
 
         if (user === null) {
             return res.status(404).send('User not found')
@@ -22,8 +27,18 @@ exports.login = async (req, res) => {
             // set logged in acount to session
             loggedInUsers.add(user.email)
 
-            const token = jwt.sign({ sub: user.id, email: user.email, cityName: user.cityName }, process.env.JWT_SECRET, { expiresIn: '1h' })
-            res.json({ token, id: user.id, email: user.email, cityName: user.cityName, message: 'Logged in successfully' })
+            const token = jwt.sign({
+                sub: user.id,
+                email: user.email,
+                cityName: user.cityName
+            }, process.env.JWT_SECRET, {
+                expiresIn: '1h'
+            })
+            res.status(202).json({
+                token,
+                email: user.email,
+                message: 'Logged in successfully'
+            })
         } else {
             res.status(401).send('Credentials invalid')
         }

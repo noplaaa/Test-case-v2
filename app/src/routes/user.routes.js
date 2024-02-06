@@ -4,6 +4,7 @@ const authController = require('../../config/controllers/auth.controller')
 const userController = require('../../config/controllers/user.controller')
 const cityController = require('../../config/controllers/city.controller')
 const threadController = require('../../config/controllers/thread.controller')
+const likedController = require('../../config/controllers/liked.controller')
 const route = express.Router();
 
 // auth
@@ -36,6 +37,7 @@ route.get('/city/:id', cityController.findOne)
 route.get('/thread', threadController.findAll)
 route.get('/thread/:id', threadController.findOne)
 route.post('/thread/create', threadController.create)
+route.post('/thread/like/:threadID', likedController.likeThread)
 // route.put('/thread/:id', threadController.update)
 route.delete('/thread/:id', threadController.remove)
 
