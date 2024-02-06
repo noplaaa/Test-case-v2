@@ -41,7 +41,7 @@ route.post('/thread/create', threadController.create)
 // route.put('/thread/:id', threadController.update)
 route.delete('/thread/:id', threadController.remove)
 
-route.post('/thread/like/:threadID', likedController.likeThread)
+route.post('/thread/like', likedController.likeThread)
 route.post('/thread/comment/:threadID', commentController.commentThread)
 
 module.exports = (app) => {
