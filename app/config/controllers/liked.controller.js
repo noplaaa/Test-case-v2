@@ -21,7 +21,7 @@ exports.likeThread = async (req, res) => {
 
     const existingLike = await Like.findOne({
       userID: userID,
-      thread: threadID
+      threadID: threadID
     })
 
     if (existingLike) {
@@ -32,7 +32,7 @@ exports.likeThread = async (req, res) => {
     } else {
       await Like.create({
         userID: userID,
-        thread: threadID
+        threadID: threadID
       })
       res.status(201).json({
         message: 'liked'

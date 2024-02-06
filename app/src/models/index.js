@@ -5,6 +5,7 @@ const User = require('./user.model.js')(mongoose)
 const City = require('./city.model.js')
 const Thread = require('./thread.model.js')(mongoose)
 const Like = require('./liked.model.js')(mongoose)
+const Comment = require('./comment.model.js')(mongoose)
 
 module.exports = {
   mongoose,
@@ -12,5 +13,6 @@ module.exports = {
   User,
   City,
   Thread,
-  Like
+  Like,
+  Comment
 }

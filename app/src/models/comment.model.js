@@ -10,9 +10,13 @@ module.exports = mongoose => {
             ref: 'Thread',
             required: true,
         },
+        comment: {
+            type: String,
+            required: true
+        }
     }, {
         timestamps: true,
     })
 
-    return mongoose.model('Like', schema)
+    return mongoose.model('Comment', schema)
 }
