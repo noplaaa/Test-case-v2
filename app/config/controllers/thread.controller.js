@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const models = require('../../src/models/index')
 const User = models.User
 const Thread = models.Thread
+const mongoose = models.mongoose
 
 // does user authenticated?
 exports.findById = async (userId) => {
@@ -17,33 +18,67 @@ exports.findById = async (userId) => {
 // GET ALL THREADS
 exports.findAll = async (req, res) => {
     try {
-        const threadData = await models.Thread.find()
-        res.json(threadData)
+      // use aggregate to count the likes
+      const threadData = await models.Thread.aggregate([
+        {
+          $lookup: {
+            from: 'likes',
+            localField: 'likes',
+            foreignField: 'threads',
+            as: 'likes',
+          },
+        },
+        {
+          $addFields: {
+            "Likes Count" : { $size: '$likes' },
+          },
+        },
+      ])
+  
+      res.json(threadData)
     } catch (err) {
-        errorHandler(err, res)
+      errorHandler(err, res)
     }
-}
-
-// GET ONE THREAD
-exports.findOne = async (req, res) => {
+  }
+  
+  // GET ONE THREAD
+  exports.findOne = async (req, res) => {
     const id = req.params && req.params.id
-
+  
     if (!id) {
-        return res.status(400).send("Invalid thread's ID")
+      return res.status(400).send("Invalid thread's ID")
     }
-
+  
     try {
-        const data = await Thread.findById(id)
-
-        if (!data) {
-            return res.status(404).send('Thread not found')
-        }
-
-        res.send(data)
+      // use aggregate to count the likes
+      const data = await Thread.aggregate([
+        {
+          $match: { _id: new mongoose.Types.ObjectId(id) },
+        },
+        {
+          $lookup: {
+            from: 'likes',
+            localField: 'likes',
+            foreignField: 'threads',
+            as: 'likes',
+          },
+        },
+        {
+          $addFields: {
+            likeCount: { $size: '$likes' },
+          },
+        },
+      ])
+  
+      if (!data || data.length === 0) {
+        return res.status(404).send('Thread not found')
+      }
+  
+      res.send(data[0])
     } catch (err) {
-        errorHandler(err, res)
+      errorHandler(err, res)
     }
-}
+  }
 
 // CREATE THREAD
 exports.create = async (req, res) => {
@@ -57,8 +92,8 @@ exports.create = async (req, res) => {
         const token = req.headers.authorization.split(' ')[1]
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
 
-        // decode id from token
-        const userID = decodedToken.sub // FIXME: ganti sub jadi id
+        // decode ID from token
+        const userID = decodedToken.sub // FIXME: ini nanti ganti sub jadi ID
         if (!userID) {
             return res.status(401).send('Authorization failed')
         }

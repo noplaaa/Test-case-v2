@@ -37,10 +37,9 @@ route.get('/city/:id', cityController.findOne)
 route.get('/thread', threadController.findAll)
 route.get('/thread/:id', threadController.findOne)
 route.post('/thread/create', threadController.create)
+route.post('/thread/like/:threadID', likedController.likeThread)
 // route.put('/thread/:id', threadController.update)
 route.delete('/thread/:id', threadController.remove)
-
-route.post('/:threadID/like', likedController.likeThread)
 
 module.exports = (app) => {
     app.use('/api', route)

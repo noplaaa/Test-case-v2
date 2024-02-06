@@ -12,6 +12,10 @@ module.exports = mongoose => {
       ref: 'User',
       required: true,
     },
+    likes: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Like',
+    }],
     deletedAt: {
       type: Date,
       default: null

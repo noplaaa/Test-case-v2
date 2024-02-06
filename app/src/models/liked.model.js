@@ -1,6 +1,6 @@
 module.exports = mongoose => {
     const schema = mongoose.Schema({
-        user: {
+        userID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,
