@@ -16,6 +16,10 @@ module.exports = mongoose => {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Like',
     }],
+    comments: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment',
+    }],
     deletedAt: {
       type: Date,
       default: null
