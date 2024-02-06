@@ -5,11 +5,15 @@ module.exports = mongoose => {
             ref: 'User',
             required: true,
         },
-        thread: {
+        threadID: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Thread',
             required: true,
         },
+        comment: {
+            type: String,
+            required: false
+        }
     }, {
         timestamps: true,
     })
