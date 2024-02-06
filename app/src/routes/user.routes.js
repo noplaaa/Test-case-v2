@@ -42,7 +42,7 @@ route.post('/thread/create', threadController.create)
 route.delete('/thread/:id', threadController.remove)
 
 route.post('/thread/like', likedController.likeThread)
-route.post('/thread/comment/:threadID', commentController.commentThread)
+route.post('/thread/comment', commentController.commentThread)
 
 module.exports = (app) => {
     app.use('/api', route)

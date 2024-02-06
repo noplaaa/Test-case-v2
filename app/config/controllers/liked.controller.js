@@ -37,14 +37,10 @@ exports.likeThread = async (req, res) => {
     })
     if (existingLike) {
       await Like.findByIdAndDelete(existingLike._id)
-      return res.staBtus(201).json({
+      return res.status(201).json({
         message: 'disliked'
       })
     }
-
-    await Like.deleteMany({
-      userID: userID
-    }) // unexpected handler
 
     await Like.create({
       userID: userID,
