@@ -7,7 +7,7 @@ exports.commentThread = async (req, res) => {
     try {
         const {
             threadID
-        } = req.params
+        } = req.query
 
         // get token from headers
         const token = req.headers.authorization.split(' ')[1]
