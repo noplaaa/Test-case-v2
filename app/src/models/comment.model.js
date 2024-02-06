@@ -12,11 +12,11 @@ module.exports = mongoose => {
         },
         comment: {
             type: String,
-            required: false
+            required: true
         }
     }, {
         timestamps: true,
     })
 
-    return mongoose.model('Like', schema)
+    return mongoose.model('Comment', schema)
 }

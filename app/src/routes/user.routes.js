@@ -5,6 +5,7 @@ const userController = require('../../config/controllers/user.controller')
 const cityController = require('../../config/controllers/city.controller')
 const threadController = require('../../config/controllers/thread.controller')
 const likedController = require('../../config/controllers/liked.controller')
+const commentController = require('../../config/controllers/comment.controller')
 const route = express.Router();
 
 // auth
@@ -37,9 +38,11 @@ route.get('/city/:id', cityController.findOne)
 route.get('/thread', threadController.findAll)
 route.get('/thread/:id', threadController.findOne)
 route.post('/thread/create', threadController.create)
-route.post('/thread/like/:threadID', likedController.likeThread)
 // route.put('/thread/:id', threadController.update)
 route.delete('/thread/:id', threadController.remove)
+
+route.post('/thread/like/:threadID', likedController.likeThread)
+route.post('/thread/comment/:threadID', commentController.commentThread)
 
 module.exports = (app) => {
     app.use('/api', route)
